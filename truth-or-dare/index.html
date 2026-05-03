@@ -228,7 +228,16 @@
         }
 
         function startTheGame() {
-            if (selectedCats.length === 0) { alert("تکایە لانی کەم جۆرێک هەڵبژێرە!"); return; }
+            // پشکنینی ئەوەی ئایا لانی کەم جۆرێکی ڕاستی هەڵبژێردراوە
+            const hasTruth = selectedCats.some(cat => cat.startsWith('t_'));
+            // پشکنینی ئەوەی ئایا لانی کەم جۆرێکی بوێری هەڵبژێردراوە
+            const hasDare = selectedCats.some(cat => cat.startsWith('d_'));
+
+            if (!hasTruth || !hasDare) {
+                alert("تکایە لانی کەم یەک دانە لە 'ڕاستی' و یەک دانە لە 'بوێری' هەڵبژێرە بۆ ئەوەی یارییەکە خۆش بێت!");
+                return;
+            }
+
             currentIndex = 0;
             updateTurn();
             showSection('section-main-game');
